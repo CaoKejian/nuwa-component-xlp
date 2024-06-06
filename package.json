@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "webpack serve --open --config build/webpack.dev.js",
-    "build": "webpack --config build/webpack.prod.js"
+    "dev": "pnpm webpack serve --open --config build/webpack.dev.js",
+    "build": "pnpm webpack --config build/webpack.prod.js"
   },
   "engines": {
     "pnpm": ">=7.0.0"
@@ -16,6 +16,8 @@
   "license": "ISC",
   "description": "女娲模版解析库",
   "dependencies": {
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

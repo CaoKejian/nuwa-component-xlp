@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
@@ -11,34 +12,47 @@ module.exports = {
     clean: true
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+      os: require.resolve('os-browserify/browser'),
+      crypto: require.resolve('crypto-browserify'),
+    },
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
+        use: {
+          loader: 'ts-loader',
+          options: {
+            allowTsInNodeModules: true,
+          },
+        },
+        exclude: /node_modules\/(?!(nuwa-components)\/).*/,
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader']
+      },
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new DotenvWebpackPlugin(),
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    }
-  },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist')
     },
     compress: true,
-    port: 9000,
-    hot: true
+    port: 9000
   }
 };

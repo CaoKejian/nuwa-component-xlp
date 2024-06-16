@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -29,15 +30,35 @@ module.exports = {
             allowTsInNodeModules: true,
           },
         },
-        exclude: /node_modules\/(?!(nuwa-components)\/).*/,
+        exclude: /node_modules\/(?!(@caokejian\nuwa-components)\/).*/,
       },
       {
         test: /\.html$/,
         use: ['html-loader']
       },
       {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        test: /\.(css|less)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                  localIdentName: '[local]--[hash:base64:5]',
+                },
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [['postcss-preset-env', {}]],
+              },
+            },
+          },
+          'less-loader',
+        ],
+        exclude: /node_modules\/(?!(@caokejian\nuwa-components)\/).*/,
       },
     ]
   },
@@ -47,6 +68,10 @@ module.exports = {
       template: './src/index.html'
     }),
     new DotenvWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
   ],
   devServer: {
     static: {

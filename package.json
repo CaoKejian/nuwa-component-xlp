@@ -16,11 +16,11 @@
   "license": "ISC",
   "description": "女娲模版解析库",
   "dependencies": {
+    "@caokejian/nuwa-components": "1.1.1",
     "axios": "^1.7.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "events": "^3.3.0",
-    "mini-css-extract-plugin": "^2.9.0",
-    "nuwa-components": "1.0.8"
+    "less": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -37,11 +37,14 @@
     "dotenv-webpack": "^8.1.0",
     "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
-    "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "only-allow": "^1.2.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^9.5.14",
+    "postcss-px-to-viewport": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "style-loader": "^4.0.0",

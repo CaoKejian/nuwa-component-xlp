@@ -23,14 +23,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: {
           loader: 'ts-loader',
           options: {
             allowTsInNodeModules: true,
           },
         },
-        exclude: /node_modules\/(?!(@caokejian\nuwa-components)\/).*/,
       },
       {
         test: /\.html$/,
@@ -58,7 +57,6 @@ module.exports = {
           },
           'less-loader',
         ],
-        exclude: /node_modules\/(?!(@caokejian\nuwa-components)\/).*/,
       },
     ]
   },

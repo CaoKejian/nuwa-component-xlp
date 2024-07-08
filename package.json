@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "SET APP_NAME=XLP && webpack serve --open --config build/webpack.dev.js",
+    "dev": "export APP_NAME=XLP && webpack serve --open --config build/webpack.dev.js",
     "build": "pnpm webpack --config build/webpack.prod.js"
   },
   "engines": {

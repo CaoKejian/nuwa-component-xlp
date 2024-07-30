@@ -16,11 +16,12 @@
   "license": "ISC",
   "description": "女娲模版解析库",
   "dependencies": {
-    "@caokejian/nuwa-components": "1.1.1",
+    "@caokejian/nuwa-components": "1.1.2",
     "axios": "^1.7.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "events": "^3.3.0",
-    "less": "^4.2.0"
+    "less": "^4.2.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
